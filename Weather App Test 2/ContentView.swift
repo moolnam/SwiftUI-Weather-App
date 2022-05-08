@@ -8,9 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject var weatherModel = WeatherModel()
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            Image(systemName: "\(weatherModel.conditionString)")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 400, height: 400, alignment: .center)
+                .foregroundColor(weatherModel.conditionColor)
+                .background(Color.blue)
+                .cornerRadius(50)
+            Text(weatherModel.title)
+                .padding()
+            Text(weatherModel.descriptionText)
+                .padding()
+            Text(weatherModel.temp)
+                .padding()
+        }
+        
     }
 }
 
