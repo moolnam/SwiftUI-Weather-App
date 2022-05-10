@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @StateObject var weatherModel = WeatherModel()
+    @State var cityName: String = ""
     
     var body: some View {
         VStack {
@@ -26,6 +27,16 @@ struct ContentView: View {
                 .padding()
             Text(weatherModel.temp)
                 .padding()
+            HStack {
+                TextField("도시를 입력하시오", text: $cityName)
+                Button(action: {
+                    weatherModel.fetchWeather(cityName: cityName)
+                }, label: {
+                    Text("버튼")
+                })
+            }
+            .padding()
+            
         }
         
     }

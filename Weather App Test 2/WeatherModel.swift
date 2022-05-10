@@ -17,7 +17,7 @@ class WeatherModel: ObservableObject {
     @Published var temp: String = "-"
     // 현재 온도 실시간으로
     @Published var conditionId: Int = 0
-    // 현재 컨디션 아이디 
+    // 현재 컨디션 아이디
     
     var conditionDescription: String {
         switch descriptionText {
@@ -97,24 +97,30 @@ class WeatherModel: ObservableObject {
     }
     
     init() {
-        petchWeather()
+        fetchWeather(cityName: "")
     }
     
+    let myApiKey: String = "27edc121638773d8a67d862806f2d6c9"
+    let weatherURL: String = "https://api.openweathermap.org/data/2.5/weather?"
     
-    
-    func petchWeather() {
-        guard let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?&appid=27edc121638773d8a67d862806f2d6c9&q=Seoul&units=metric") else {
+    func fetchWeather(cityName: String) {
+        let urlString = "\(weatherURL)&appid=\(myApiKey)&q=\(cityName)&units=metric"
+        print(urlString)
+        
+        
+        guard let url = URL(string: urlString) else {
+            print("url 이 없습니다. ")
             return
         }
         
         let task = URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data = data, error == nil else {
+                print("??")
                 return
             }
             
             do {
                 let model = try JSONDecoder().decode(WeatherData.self, from: data)
-                
                 DispatchQueue.main.async {
                     self.title = model.name
                     self.descriptionText = model.weather[0].description
@@ -126,8 +132,8 @@ class WeatherModel: ObservableObject {
             }
         }
         task.resume()
-        
-        
     }
+    
+    
     
 }
