@@ -23,7 +23,7 @@ struct ContentView: View {
                 .cornerRadius(50)
             Text(weatherModel.title)
                 .padding()
-            Text(weatherModel.descriptionText)
+            Text(weatherModel.conditionDescription)
                 .padding()
             Text(weatherModel.temp)
                 .padding()

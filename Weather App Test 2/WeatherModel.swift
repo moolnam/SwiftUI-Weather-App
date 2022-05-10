@@ -125,6 +125,7 @@ class WeatherModel: ObservableObject {
                     self.title = model.name
                     self.descriptionText = model.weather[0].description
                     self.temp = "\(model.main.temp)"
+                    self.conditionId = model.weather[0].id
                     
                 }
             } catch {
