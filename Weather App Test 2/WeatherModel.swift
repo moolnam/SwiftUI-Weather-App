@@ -10,14 +10,16 @@ import SwiftUI
 
 class WeatherModel: ObservableObject {
     
-    @Published var title: String = "-"
+    @Published var title: String = "도시 정보 모름"
     // 현재 도시이름 실시간으로
-    @Published var descriptionText: String = "-"
+    @Published var descriptionText: String = "날씨 정보 모름"
     // 현재 날씨 상태 실시간으로
-    @Published var temp: String = "-"
+    @Published var temp: String = "온도 정보 모름"
     // 현재 온도 실시간으로
     @Published var conditionId: Int = 0
     // 현재 컨디션 아이디
+    
+    
     
     var conditionDescription: String {
         switch descriptionText {
@@ -92,7 +94,7 @@ class WeatherModel: ObservableObject {
         case 800:
             return "sun.max"
         default:
-            return "cloud.fill"
+            return "icloud.slash"
         }
     }
     
