@@ -118,6 +118,7 @@ class WeatherModel: ObservableObject {
         
         let task = URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data = data, error == nil else {
+                // 데이터가 없을때
                 print("??")
                 return
             }
