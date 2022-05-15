@@ -111,6 +111,7 @@ class WeatherModel: ObservableObject {
         
         
         guard let url = URL(string: urlString) else {
+            // url 이 없을때
             print("url 이 없습니다. ")
             return
         }
